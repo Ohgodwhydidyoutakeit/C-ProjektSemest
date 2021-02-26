@@ -1,0 +1,254 @@
+﻿<Window x:Class="Stamps.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Stamps"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="950">
+    <Grid>
+        <!--Tab dla zmiany zakladek--> 
+        <TabControl>
+            <TabItem Header="Users">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                       <!--label-->
+                    <Label Grid.Row="0" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Users"/>
+                        <!--data grid with data binding--> 
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Margin="5" Name="UserDG" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="UserName" Binding="{Binding Username}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+
+                            <DataGridTemplateColumn Header="Update">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Edit" Click="UpdateUserForEdit"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Click="DeleteUser"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="2">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <!--add item-->
+                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Add new" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                <Grid Margin="5" x:Name="AddNewUsersGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Content="User Name"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Username}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Email"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Email}"/>
+
+                                    <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Add" Margin="5" Click="AddUser"/>
+
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+
+                            <!--modify item-->
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Update" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                <Grid Margin="5" x:Name="UpdateUserGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Content="User Name"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Username}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Email"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Email}"/>
+
+                                    <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Update" Margin="5" Click="UpdateUser"/>
+
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <!--second tab--> 
+            <TabItem Header="Stamps">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    
+                    <Label Grid.Row="0" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CRUD"/>
+                    <!--Display data-->
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Margin="5" Name="StampDG" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Stamp Id" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="PictureUrl" Binding="{Binding PictureUrl}"/>
+                            <DataGridTextColumn Header="NationalityId" Binding="{Binding NationalityId}"/>
+                            <DataGridTextColumn Header="UserId" Binding="{Binding UserId}"/>
+                            
+                            <DataGridTemplateColumn Header="Update">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Edit" Click="UpdateStampForEdit"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Click="DeleteStamp"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="2">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                            <!--Add item--> 
+                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Add new" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                <Grid Margin="5" x:Name="AddNewStampGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Name"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Description"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description}"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0" Content="Price"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Price}"/>
+
+                                    <Label Grid.Row="3" Grid.Column="0" Content="NationalityId"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NationalityId}"/>
+
+                                    <Label Grid.Row="4" Grid.Column="0" Content="UserId"/>
+                                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding UserId}"/>
+
+                                    <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Add" Margin="5" Click="AddStamp"/>
+
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!--Edit Item-->
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Update" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                <Grid Margin="5" x:Name="UpdateStampGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Name"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Description"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description}"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0" Content="Price"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Price}"/>
+
+                                    <Label Grid.Row="3" Grid.Column="0" Content="PictureUrl"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PictureUrl}"/>
+
+                                    <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Update" Margin="5" Click="UpdateStamp"/>
+
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
